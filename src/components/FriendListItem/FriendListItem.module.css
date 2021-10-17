@@ -1,0 +1,31 @@
+.item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 280px;
+    border: 1px solid rgb(235, 225, 225);
+    border-radius: 5%;
+    padding: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .statusOn {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: green;
+  }
+  
+  .statusOff {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: red;
+  }
+  
+  .name {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 21px;
+  }
