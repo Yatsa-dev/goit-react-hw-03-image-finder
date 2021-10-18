@@ -1,14 +1,28 @@
-
+import React, { Component } from 'react';
+import { ToastContainer } from 'react-toastify';
+import './App.module.css'
+// import ServiceApi from 'components/Service-api';
 import Container from 'components/Container';
+import Searchbar from 'components/Searchbar';
 
 
 
-function App() {
-  return (
-    <Container>
-     
-    </Container>
-  );
+export default class App extends Component {
+  state={
+    query: ''
+  };
+
+handleFormSubmit = query=>{
+ this.setState({query});
 }
 
-export default App;
+  render(){
+    return (
+      <Container>
+      <Searchbar onSubmit={this.handleFormSubmit}/>
+      <ToastContainer autoClose={3000}/>
+      </Container>
+   );
+ }
+  }
+  
