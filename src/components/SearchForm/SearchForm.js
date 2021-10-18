@@ -1,4 +1,6 @@
-import React,{Component} from "react";
+import {Component} from "react";
+import PropTypes from 'prop-types';
+import { toast } from "react-toastify";
 import s from './SearchForm.module.css'
 
 export default class SearchForm extends Component{
@@ -10,25 +12,29 @@ export default class SearchForm extends Component{
         this.setState({query:event.currentTarget.value.toLowerCase()});
     };
     handleSubmit = event=>{
+      const {query} = this.state;
         event.preventDefault();
-        if(this.state.query.trim() === ''){
-            return;
+        if(query.trim() === ''){
+        toast.error('Sorry,input field is empty');
+        return;
         }
         this.setState({query:''});
-        this.props.onSubmit(this.state.query)
+        this.props.onSubmit(query)
     };
 
     render(){
+      const {query} = this.state;
+      const {handleQueryChange,handleSubmit} = this;
         return(
-            <form onSubmit={this.handleSubmit} className={s.SearchForm}>
+            <form onSubmit={handleSubmit} className={s.SearchForm}>
           <button type="submit" className={s.button}>
             <span className={s.buttonLabel}>Search</span>
           </button>
       
           <input
             className={s.input}
-            value={this.state.query}
-            onChange={this.handleQueryChange}
+            value={query}
+            onChange={handleQueryChange}
             type="text"
             placeholder="Search images and photos"
           />
@@ -36,3 +42,7 @@ export default class SearchForm extends Component{
         )
     }
 }
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func,
+  onChange: PropTypes.string,
+};
